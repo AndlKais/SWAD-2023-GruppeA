@@ -31,14 +31,7 @@ paths:
                         example: Registrierung erfolgreich
             '400':
               description: Registrierung fehlgeschlagen (Benutzername bereits vergeben)
-              content:
-               application/json:
-                schema:
-                 type: object
-                 properties:
-                  message:
-                   type: string
-                   example: Registrierung fehlgeschlagen
+
     get:
       tags:
         - User
@@ -51,7 +44,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
 
-  /login:
+  /user/login:
     get:
       summary: Login des Mini-Shops
       responses:
@@ -60,64 +53,41 @@ paths:
           content:
             application/json:
               example:
-                - id: 1
-                  username: Max Mustermann
-                  password: 123456
-                - id: 2
-                  username: Max Musterfrau
-                  password: 654321
+                $ref: '#/components/schemas/Login'
         '401':
           description: Login fehlgeschlagen
+
+
+
+  /product:
+    get:
+      tags:
+        - Produkt
+      summary: Alle Produkte abrufen
+      responses:
+        '200':
+          description: Erfolgreiche Abfrage
           content:
             application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Login fehlgeschlagen
-
-  /pw-reset:
-    put:
-      summary: Passwort zurücksetzen
+              example:
+                $ref: '#/components/schemas/Product'
+        '201':
+          description: Erfolgreich erstellt
+        '400':
+          description: Ungültige Anfrage
+    post:
+      summary: Neues Produkt erstellen
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  format: email
+              $ref: '#/components/schemas/Product'
       responses:
-        '200':
-          description: Passwort zurückgesetzt
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Passwort zurückgesetzt
+        '201':
+          description: Erfolgreich erstellt
         '400':
-          description: Passwort zurücksetzen fehlgeschlagen
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Passwort zurücksetzen fehlgeschlagen
-  /product:
-    get:
-      tags:
-        - Produkt
-      summary: Produkte
-      responses:
-
+          description: Ungültige Anfrage
 
 components:
   schemas:
@@ -141,3 +111,29 @@ components:
           format: password
           maxLength: 8
           example: 123456
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Fruit Packet
+        price:
+          type: number
+          example: 43.60
+        weight:
+          type: number
+          example: 500
+
+    Login:
+        type: object
+        properties:
+          username:
+            type: string
+            example: Max Mustermann
+          password:
+            type: string
+            format: password
+            maxLength: 8
+            example: 123456
+
+
