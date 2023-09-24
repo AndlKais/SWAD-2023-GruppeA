@@ -1,0 +1,64 @@
+openapi: 3.1.0
+info:
+  title: MiniShop-API
+  version: 1.0.0
+  contact:
+    name: GruppeA SWAD
+servers:
+  - url: https://api.example.com/
+paths:
+  /products:
+    get:
+      summary: Alle Produkte abrufen
+      responses:
+        '200':
+          description: Erfolgreiche Abfrage
+          content:
+            application/json:
+              example:
+                - id: 1
+                  name: Fruit Packet
+                  weight: 500
+                  price: 43.60
+                - id: 2
+                  name: Thapath (Koppara)
+                  weight: 500
+                  price: 23.90
+                - id: 3
+                  name: Eggs
+                  quantity: 10
+                  price: 3.20
+                - id: 4
+                  name: Fruit Packet
+                  weight: 500
+                  price: 11.50
+                - id: 5
+                  name: Chicken
+                  weight: 500
+                  price: 17.30
+        '201':
+          description: Erfolgreich erstellt
+        '400':
+          description: Ungültige Anfrage
+    post:
+      summary: Neues Produkt erstellen
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Produkt 3
+                price:
+                  type: number
+                  example: 5.99
+      responses:
+        '201':
+          description: Erfolgreich erstellt
+        '400':
+          description: Ungültige Anfrage
+
+  
