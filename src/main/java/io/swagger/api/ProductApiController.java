@@ -32,7 +32,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T15:52:53.232524382Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
 @RestController
 public class ProductApiController implements ProductApi {
 
@@ -49,6 +49,11 @@ public class ProductApiController implements ProductApi {
     }
 
     public ResponseEntity<Void> productGet() {
+        String accept = request.getHeader("Accept");
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public ResponseEntity<Void> productIdGet(@Parameter(in = ParameterIn.PATH, description = "ID des Produkts", required=true, schema=@Schema()) @PathVariable("id") Object id) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }

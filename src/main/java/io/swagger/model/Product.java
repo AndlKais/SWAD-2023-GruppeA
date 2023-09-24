@@ -4,7 +4,6 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.math.BigDecimal;
 import org.springframework.validation.annotation.Validated;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -13,20 +12,20 @@ import javax.validation.constraints.*;
  * Product
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T15:52:53.232524382Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
 
 
 public class Product   {
   @JsonProperty("name")
-  private String name = null;
+  private Object name = null;
 
   @JsonProperty("price")
-  private BigDecimal price = null;
+  private Object price = null;
 
   @JsonProperty("weight")
-  private BigDecimal weight = null;
+  private Object weight = null;
 
-  public Product name(String name) {
+  public Product name(Object name) {
     this.name = name;
     return this;
   }
@@ -37,15 +36,15 @@ public class Product   {
    **/
   @Schema(example = "Fruit Packet", description = "")
   
-    public String getName() {
+    public Object getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(Object name) {
     this.name = name;
   }
 
-  public Product price(BigDecimal price) {
+  public Product price(Object price) {
     this.price = price;
     return this;
   }
@@ -56,16 +55,15 @@ public class Product   {
    **/
   @Schema(example = "43.6", description = "")
   
-    @Valid
-    public BigDecimal getPrice() {
+    public Object getPrice() {
     return price;
   }
 
-  public void setPrice(BigDecimal price) {
+  public void setPrice(Object price) {
     this.price = price;
   }
 
-  public Product weight(BigDecimal weight) {
+  public Product weight(Object weight) {
     this.weight = weight;
     return this;
   }
@@ -76,12 +74,11 @@ public class Product   {
    **/
   @Schema(example = "500", description = "")
   
-    @Valid
-    public BigDecimal getWeight() {
+    public Object getWeight() {
     return weight;
   }
 
-  public void setWeight(BigDecimal weight) {
+  public void setWeight(Object weight) {
     this.weight = weight;
   }
 

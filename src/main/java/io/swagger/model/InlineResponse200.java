@@ -12,14 +12,14 @@ import javax.validation.constraints.*;
  * InlineResponse200
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T15:52:53.232524382Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
 
 
 public class InlineResponse200   {
   @JsonProperty("message")
-  private String message = null;
+  private Object message = null;
 
-  public InlineResponse200 message(String message) {
+  public InlineResponse200 message(Object message) {
     this.message = message;
     return this;
   }
@@ -30,11 +30,11 @@ public class InlineResponse200   {
    **/
   @Schema(example = "Registrierung erfolgreich", description = "")
   
-    public String getMessage() {
+    public Object getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(Object message) {
     this.message = message;
   }
 

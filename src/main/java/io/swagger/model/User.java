@@ -12,23 +12,23 @@ import javax.validation.constraints.*;
  * User
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T15:52:53.232524382Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
 
 
 public class User   {
   @JsonProperty("email")
-  private String email = null;
+  private Object email = null;
 
   @JsonProperty("username")
-  private String username = null;
+  private Object username = null;
 
   @JsonProperty("password")
-  private String password = null;
+  private Object password = null;
 
   @JsonProperty("password2")
-  private String password2 = null;
+  private Object password2 = null;
 
-  public User email(String email) {
+  public User email(Object email) {
     this.email = email;
     return this;
   }
@@ -39,15 +39,15 @@ public class User   {
    **/
   @Schema(example = "test@gmail.com", description = "")
   
-    public String getEmail() {
+    public Object getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(Object email) {
     this.email = email;
   }
 
-  public User username(String username) {
+  public User username(Object username) {
     this.username = username;
     return this;
   }
@@ -58,15 +58,15 @@ public class User   {
    **/
   @Schema(example = "Max Mustermann", description = "")
   
-    public String getUsername() {
+    public Object getUsername() {
     return username;
   }
 
-  public void setUsername(String username) {
+  public void setUsername(Object username) {
     this.username = username;
   }
 
-  public User password(String password) {
+  public User password(Object password) {
     this.password = password;
     return this;
   }
@@ -77,15 +77,15 @@ public class User   {
    **/
   @Schema(example = "123456", description = "")
   
-    public String getPassword() {
+    public Object getPassword() {
     return password;
   }
 
-  public void setPassword(String password) {
+  public void setPassword(Object password) {
     this.password = password;
   }
 
-  public User password2(String password2) {
+  public User password2(Object password2) {
     this.password2 = password2;
     return this;
   }
@@ -96,11 +96,11 @@ public class User   {
    **/
   @Schema(example = "123456", description = "")
   
-    public String getPassword2() {
+    public Object getPassword2() {
     return password2;
   }
 
-  public void setPassword2(String password2) {
+  public void setPassword2(Object password2) {
     this.password2 = password2;
   }
 
