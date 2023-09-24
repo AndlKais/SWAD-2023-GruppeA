@@ -3,7 +3,7 @@ info:
   title: MiniShop-API
   version: 1.0.0
   contact:
-    name: GruppeA SWAD
+    name: GruppeA-SWAD
 servers:
   - url: https://api.example.com/
 paths:
@@ -13,24 +13,24 @@ paths:
         - User
       summary: Registrierung eines neuen Benutzers
       requestBody:
-            required: true
-            content:
-             application/json:
-              schema:
-                $ref: '#/components/schemas/User'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
-            '200':
-              description: Registrierung erfolgreich
-              content:
-                application/json:
-                 schema:
-                  type: object
-                  properties:
-                    message:
-                        type: string
-                        example: Registrierung erfolgreich
-            '400':
-              description: Registrierung fehlgeschlagen (Benutzername bereits vergeben)
+        '200':
+          description: Registrierung erfolgreich
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Registrierung erfolgreich
+        '400':
+          description: Registrierung fehlgeschlagen (Benutzername bereits vergeben)
     get:
       tags:
         - User
@@ -55,6 +55,35 @@ paths:
                 $ref: '#/components/schemas/Login'
         '401':
           description: Login fehlgeschlagen
+
+  /user/{id}/pw-reset:
+    put:
+      summary: Passwort zurücksetzen
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Die ID des Benutzers, dessen Passwort zurückgesetzt werden soll.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newPassword:
+                  type: string
+                  minLength: 8
+                confirmPassword:
+                  type: string
+                  minLength: 8
+      responses:
+        '200':
+          description: Passwort erfolgreich zurückgesetzt
+        '400':
+          description: Fehler beim Zurücksetzen des Passworts
 
   /product:
     get:
@@ -89,30 +118,30 @@ paths:
           description: Ungültige Anfrage
 
   /product/{productId}:
-      get:
-        tags:
-          - Produkt
-        summary: Produkt mit ID abrufen
-        operationId: getProductById
-        parameters:
-          - name: productId
-            in: path
-            required: true
-            description: ID des Produkts
-            schema:
-              type: integer
-              format: int64
-        responses:
-            '200':
-                description: Erfolgreiche Abfrage
-                content:
-                 application/json:
-                    example:
-                     $ref: '#/components/schemas/Product'
-            '400':
-                description: Ungültige Anfrage
-            '404':
-                description: Produkt nicht gefunden
+    get:
+      tags:
+        - Produkt
+      summary: Produkt mit ID abrufen
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID des Produkts
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Erfolgreiche Abfrage
+          content:
+            application/json:
+              example:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Ungültige Anfrage
+        '404':
+          description: Produkt nicht gefunden
 
 components:
   schemas:
@@ -129,12 +158,12 @@ components:
         password:
           type: string
           format: password
-          maxLength: 8
+          minLength: 8
           example: 123456
         password2:
           type: string
           format: password
-          maxLength: 8
+          minLength: 8
           example: 123456
     Product:
       type: object
@@ -150,15 +179,13 @@ components:
           example: 500
 
     Login:
-        type: object
-        properties:
-          username:
-            type: string
-            example: Max Mustermann
-          password:
-            type: string
-            format: password
-            maxLength: 8
-            example: 123456
-
-
+      type: object
+      properties:
+        username:
+          type: string
+          example: Max Mustermann
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: 123456

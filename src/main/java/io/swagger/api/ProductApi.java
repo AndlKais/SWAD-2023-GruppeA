@@ -32,7 +32,7 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T15:52:53.232524382Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
 @Validated
 public interface ProductApi {
 
@@ -47,6 +47,18 @@ public interface ProductApi {
         produces = { "application/json" }, 
         method = RequestMethod.GET)
     ResponseEntity<Void> productGet();
+
+
+    @Operation(summary = "Produkt mit ID abrufen", description = "", tags={ "Produkt" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Erfolgreiche Abfrage"),
+        
+        @ApiResponse(responseCode = "400", description = "Ungültige Anfrage"),
+        
+        @ApiResponse(responseCode = "404", description = "Produkt nicht gefunden") })
+    @RequestMapping(value = "/product/{id}",
+        method = RequestMethod.GET)
+    ResponseEntity<Void> productIdGet(@Parameter(in = ParameterIn.PATH, description = "ID des Produkts", required=true, schema=@Schema()) @PathVariable("id") Object id);
 
 
     @Operation(summary = "Neues Produkt erstellen", description = "", tags={  })
