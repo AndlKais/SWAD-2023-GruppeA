@@ -1,5 +1,6 @@
 package io.swagger.api;
 
+import io.swagger.model.IdPwresetBody;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,7 +34,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
 @RestController
 public class UserApiController implements UserApi {
 
@@ -49,11 +50,11 @@ public class UserApiController implements UserApi {
         this.request = request;
     }
 
-    public ResponseEntity<User> userGet() {
+    public ResponseEntity<User> getUserById(@Parameter(in = ParameterIn.PATH, description = "ID des Benutzers", required=true, schema=@Schema()) @PathVariable("id") Long id) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<User>(objectMapper.readValue("{\n  \"password\" : 123456,\n  \"password2\" : 123456,\n  \"email\" : \"test@gmail.com\",\n  \"username\" : \"Max Mustermann\"\n}", User.class), HttpStatus.NOT_IMPLEMENTED);
+                return new ResponseEntity<User>(objectMapper.readValue("{\n  \"password\" : \"123456\",\n  \"password2\" : \"123456\",\n  \"id\" : 1,\n  \"email\" : \"test@gmail.com\",\n  \"username\" : \"Max Mustermann\"\n}", User.class), HttpStatus.NOT_IMPLEMENTED);
             } catch (IOException e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -61,6 +62,30 @@ public class UserApiController implements UserApi {
         }
 
         return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public ResponseEntity<Void> logoutUser() {
+        String accept = request.getHeader("Accept");
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public ResponseEntity<User> userGet() {
+        String accept = request.getHeader("Accept");
+        if (accept != null && accept.contains("application/json")) {
+            try {
+                return new ResponseEntity<User>(objectMapper.readValue("{\n  \"password\" : \"123456\",\n  \"password2\" : \"123456\",\n  \"id\" : 1,\n  \"email\" : \"test@gmail.com\",\n  \"username\" : \"Max Mustermann\"\n}", User.class), HttpStatus.NOT_IMPLEMENTED);
+            } catch (IOException e) {
+                log.error("Couldn't serialize response for content type application/json", e);
+                return new ResponseEntity<User>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        }
+
+        return new ResponseEntity<User>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public ResponseEntity<Void> userIdPwResetPut(@Parameter(in = ParameterIn.PATH, description = "Die ID des Benutzers, dessen Passwort zurückgesetzt werden soll.", required=true, schema=@Schema()) @PathVariable("id") Integer id,@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody IdPwresetBody body) {
+        String accept = request.getHeader("Accept");
+        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public ResponseEntity<Void> userLoginGet() {

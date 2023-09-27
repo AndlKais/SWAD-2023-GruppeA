@@ -1,6 +1,6 @@
 package io.swagger.api;
 
-import io.swagger.model.Product;
+import io.swagger.model.ProductsBody;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -32,33 +32,28 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-15T15:39:12.833679592Z[GMT]")
 @RestController
-public class ProductApiController implements ProductApi {
+public class ProductsApiController implements ProductsApi {
 
-    private static final Logger log = LoggerFactory.getLogger(ProductApiController.class);
+    private static final Logger log = LoggerFactory.getLogger(ProductsApiController.class);
 
     private final ObjectMapper objectMapper;
 
     private final HttpServletRequest request;
 
     @org.springframework.beans.factory.annotation.Autowired
-    public ProductApiController(ObjectMapper objectMapper, HttpServletRequest request) {
+    public ProductsApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
         this.request = request;
     }
 
-    public ResponseEntity<Void> getProductById(@Parameter(in = ParameterIn.PATH, description = "ID des Produkts", required=true, schema=@Schema()) @PathVariable("productId") Long productId) {
+    public ResponseEntity<Void> productsGet() {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<Void> productGet() {
-        String accept = request.getHeader("Accept");
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
-    }
-
-    public ResponseEntity<Void> productPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Product body) {
+    public ResponseEntity<Void> productsPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody ProductsBody body) {
         String accept = request.getHeader("Accept");
         return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
     }

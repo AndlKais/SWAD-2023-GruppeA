@@ -9,33 +9,34 @@ import javax.validation.Valid;
 import javax.validation.constraints.*;
 
 /**
- * InlineResponse200
+ * UsersBody
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-15T15:39:12.833679592Z[GMT]")
 
 
-public class InlineResponse200   {
-  @JsonProperty("message")
-  private String message = null;
+public class UsersBody   {
+  @JsonProperty("name")
+  private String name = null;
 
-  public InlineResponse200 message(String message) {
-    this.message = message;
+  public UsersBody name(String name) {
+    this.name = name;
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Get name
+   * @return name
    **/
-  @Schema(example = "Registrierung erfolgreich", description = "")
-  
-    public String getMessage() {
-    return message;
+  @Schema(required = true, description = "")
+      @NotNull
+
+    public String getName() {
+    return name;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -47,21 +48,21 @@ public class InlineResponse200   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.message, inlineResponse200.message);
+    UsersBody usersBody = (UsersBody) o;
+    return Objects.equals(this.name, usersBody.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse200 {\n");
+    sb.append("class UsersBody {\n");
     
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

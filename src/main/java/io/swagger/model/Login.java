@@ -12,17 +12,17 @@ import javax.validation.constraints.*;
  * Login
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
 
 
 public class Login   {
   @JsonProperty("username")
-  private Object username = null;
+  private String username = null;
 
   @JsonProperty("password")
-  private Object password = null;
+  private String password = null;
 
-  public Login username(Object username) {
+  public Login username(String username) {
     this.username = username;
     return this;
   }
@@ -33,15 +33,15 @@ public class Login   {
    **/
   @Schema(example = "Max Mustermann", description = "")
   
-    public Object getUsername() {
+    public String getUsername() {
     return username;
   }
 
-  public void setUsername(Object username) {
+  public void setUsername(String username) {
     this.username = username;
   }
 
-  public Login password(Object password) {
+  public Login password(String password) {
     this.password = password;
     return this;
   }
@@ -52,11 +52,11 @@ public class Login   {
    **/
   @Schema(example = "123456", description = "")
   
-    public Object getPassword() {
+    public String getPassword() {
     return password;
   }
 
-  public void setPassword(Object password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 

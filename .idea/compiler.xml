@@ -9,13 +9,9 @@
         <module name="swagger-spring" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="openapi-java-client" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="openapi-java-client" options="-Xlint:all -J-Xss4m" />
       <module name="swagger-spring" options="-parameters" />
     </option>
   </component>

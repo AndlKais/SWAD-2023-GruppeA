@@ -5,6 +5,7 @@
  */
 package io.swagger.api;
 
+import io.swagger.model.IdPwresetBody;
 import io.swagger.model.InlineResponse200;
 import io.swagger.model.User;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,9 +34,30 @@ import javax.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-24T16:26:29.294335690Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
 @Validated
 public interface UserApi {
+
+    @Operation(summary = "Benutzerdaten abrufen", description = "", tags={ "User" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Benutzerdaten erfolgreich abgerufen", content = @Content(mediaType = "application/json", schema = @Schema(implementation = User.class))),
+        
+        @ApiResponse(responseCode = "400", description = "Ungültige Anfrage"),
+        
+        @ApiResponse(responseCode = "404", description = "Benutzer nicht gefunden") })
+    @RequestMapping(value = "/user/{id}",
+        produces = { "application/json" }, 
+        method = RequestMethod.GET)
+    ResponseEntity<User> getUserById(@Parameter(in = ParameterIn.PATH, description = "ID des Benutzers", required=true, schema=@Schema()) @PathVariable("id") Long id);
+
+
+    @Operation(summary = "Logout aus dem Mini-Shop", description = "", tags={ "User" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Logout erfolgreich") })
+    @RequestMapping(value = "/user/logout",
+        method = RequestMethod.GET)
+    ResponseEntity<Void> logoutUser();
+
 
     @Operation(summary = "Benutzerdaten abrufen", description = "", tags={ "User" })
     @ApiResponses(value = { 
@@ -46,7 +68,18 @@ public interface UserApi {
     ResponseEntity<User> userGet();
 
 
-    @Operation(summary = "Login des Mini-Shops", description = "", tags={  })
+    @Operation(summary = "Passwort zurücksetzen", description = "", tags={ "User" })
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Passwort erfolgreich zurückgesetzt"),
+        
+        @ApiResponse(responseCode = "400", description = "Fehler beim Zurücksetzen des Passworts") })
+    @RequestMapping(value = "/user/{id}/pw-reset",
+        consumes = { "application/json" }, 
+        method = RequestMethod.PUT)
+    ResponseEntity<Void> userIdPwResetPut(@Parameter(in = ParameterIn.PATH, description = "Die ID des Benutzers, dessen Passwort zurückgesetzt werden soll.", required=true, schema=@Schema()) @PathVariable("id") Integer id, @Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody IdPwresetBody body);
+
+
+    @Operation(summary = "Login des Mini-Shops", description = "", tags={ "User" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Login erfolgreich"),
         

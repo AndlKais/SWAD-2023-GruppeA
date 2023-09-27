@@ -5,7 +5,7 @@
  */
 package io.swagger.api;
 
-import io.swagger.model.Product;
+import io.swagger.model.CartItem;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
@@ -34,43 +34,28 @@ import java.util.Map;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-09-27T17:52:30.403097720Z[GMT]")
 @Validated
-public interface ProductApi {
+public interface CartApi {
 
-    @Operation(summary = "Produkt mit ID abrufen", description = "", tags={ "Produkt" })
+    @Operation(summary = "Produkte im Warenkorb anzeigen", description = "", tags={ "Warenkorb" })
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Erfolgreiche Abfrage"),
         
-        @ApiResponse(responseCode = "400", description = "Ungültige Anfrage"),
-        
-        @ApiResponse(responseCode = "404", description = "Produkt nicht gefunden") })
-    @RequestMapping(value = "/product/{productId}",
+        @ApiResponse(responseCode = "400", description = "Ungültige Anfrage") })
+    @RequestMapping(value = "/cart",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<Void> getProductById(@Parameter(in = ParameterIn.PATH, description = "ID des Produkts", required=true, schema=@Schema()) @PathVariable("productId") Long productId);
+    ResponseEntity<Void> cartGet();
 
 
-    @Operation(summary = "Alle Produkte abrufen", description = "", tags={ "Produkt" })
+    @Operation(summary = "Produkt zum Warenkorb hinzufügen", description = "", tags={ "Warenkorb" })
     @ApiResponses(value = { 
-        @ApiResponse(responseCode = "200", description = "Erfolgreiche Abfrage"),
-        
-        @ApiResponse(responseCode = "201", description = "Erfolgreich erstellt"),
+        @ApiResponse(responseCode = "201", description = "Produkt erfolgreich zum Warenkorb hinzugefügt"),
         
         @ApiResponse(responseCode = "400", description = "Ungültige Anfrage") })
-    @RequestMapping(value = "/product",
-        produces = { "application/json" }, 
-        method = RequestMethod.GET)
-    ResponseEntity<Void> productGet();
-
-
-    @Operation(summary = "Neues Produkt erstellen", description = "", tags={ "Produkt" })
-    @ApiResponses(value = { 
-        @ApiResponse(responseCode = "201", description = "Erfolgreich erstellt"),
-        
-        @ApiResponse(responseCode = "400", description = "Ungültige Anfrage") })
-    @RequestMapping(value = "/product",
+    @RequestMapping(value = "/cart",
         consumes = { "application/json" }, 
         method = RequestMethod.POST)
-    ResponseEntity<Void> productPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody Product body);
+    ResponseEntity<Void> cartPost(@Parameter(in = ParameterIn.DEFAULT, description = "", required=true, schema=@Schema()) @Valid @RequestBody CartItem body);
 
 }
 
