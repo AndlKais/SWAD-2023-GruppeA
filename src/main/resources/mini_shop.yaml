@@ -43,8 +43,36 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
 
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Benutzerdaten abrufen
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID des Benutzers
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Benutzerdaten erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Ungültige Anfrage
+        '404':
+          description: Benutzer nicht gefunden
+
   /user/login:
     get:
+      tags:
+        - User
       summary: Login des Mini-Shops
       responses:
         '200':
@@ -55,6 +83,16 @@ paths:
                 $ref: '#/components/schemas/Login'
         '401':
           description: Login fehlgeschlagen
+
+  /user/logout:
+    get:
+      tags:
+        - User
+      summary: Logout aus dem Mini-Shop
+      operationId: logoutUser
+      responses:
+        'default':
+          description: Logout erfolgreich
 
   /user/{id}/pw-reset:
     put:
@@ -165,6 +203,7 @@ components:
           format: password
           minLength: 8
           example: 123456
+
     Product:
       type: object
       properties:
@@ -189,3 +228,6 @@ components:
           format: password
           minLength: 8
           example: 123456
+
+    Cart:
+      type: object
