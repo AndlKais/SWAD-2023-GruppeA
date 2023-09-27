@@ -181,6 +181,38 @@ paths:
         '404':
           description: Produkt nicht gefunden
 
+
+  /cart:
+    post:
+      tags:
+        - Warenkorb
+      summary: Produkt zum Warenkorb hinzufügen
+      requestBody:
+          required: true
+          content:
+            application/json:
+             schema:
+               $ref: '#/components/schemas/CartItem'
+      responses:
+        '201':
+          description: Produkt erfolgreich zum Warenkorb hinzugefügt
+        '400':
+          description: Ungültige Anfrage
+
+    get:
+      tags:
+         - Warenkorb
+      summary: Produkte im Warenkorb anzeigen
+      responses:
+         '200':
+           description: Erfolgreiche Abfrage
+           content:
+             application/json:
+               example:
+                 $ref: '#/components/schemas/Cart'
+         '400':
+           description: Ungültige Anfrage
+
 components:
   schemas:
     User:
@@ -230,4 +262,22 @@ components:
           example: 123456
 
     Cart:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                    $ref: '#/components/schemas/CartItem'
+
+    CartItem:
       type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+          description: Die ID des Produkts im Warenkorb.
+        quantity:
+          type: integer
+          format: int32
+          description: Anzahl der Produkte im Warenkorb
+          minimum: 1
