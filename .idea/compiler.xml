@@ -14,7 +14,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="jpa" options="-parameters" />
-      <module name="swagger-spring" options="-parameters" />
+      <module name="swagger-spring" options="" />
     </option>
   </component>
 </project>
