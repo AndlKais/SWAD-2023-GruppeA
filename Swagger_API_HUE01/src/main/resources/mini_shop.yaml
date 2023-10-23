@@ -1,0 +1,295 @@
+openapi: 3.0.0
+info:
+  title: MiniShop-API
+  version: 1.0.0
+  contact:
+    name: GruppeA-SWAD
+servers:
+  - url: https://api.example.com/
+paths:
+  /user:
+    post:
+      tags:
+        - User
+      summary: Registrierung eines neuen Benutzers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Registrierung erfolgreich
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Registrierung erfolgreich
+        '400':
+          description: Registrierung fehlgeschlagen (Benutzername bereits vergeben)
+    get:
+      tags:
+        - User
+      summary: Benutzerdaten abrufen
+      responses:
+        '200':
+          description: Benutzerdaten erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /user/{id}:
+    get:
+      tags:
+        - User
+      summary: Benutzerdaten abrufen
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID des Benutzers
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Benutzerdaten erfolgreich abgerufen
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Ungültige Anfrage
+        '404':
+          description: Benutzer nicht gefunden
+
+  /user/login:
+    get:
+      tags:
+        - User
+      summary: Login des Mini-Shops
+      responses:
+        '200':
+          description: Login erfolgreich
+          content:
+            application/json:
+              example:
+                $ref: '#/components/schemas/Login'
+        '401':
+          description: Login fehlgeschlagen
+
+  /user/logout:
+    get:
+      tags:
+        - User
+      summary: Logout aus dem Mini-Shop
+      operationId: logoutUser
+      responses:
+        'default':
+          description: Logout erfolgreich
+
+  /user/{id}/pw-reset:
+    put:
+      tags:
+        - User
+      summary: Passwort zurücksetzen
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: Die ID des Benutzers, dessen Passwort zurückgesetzt werden soll.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                newPassword:
+                  type: string
+                  minLength: 8
+                confirmPassword:
+                  type: string
+                  minLength: 8
+      responses:
+        '200':
+          description: Passwort erfolgreich zurückgesetzt
+        '400':
+          description: Fehler beim Zurücksetzen des Passworts
+
+  /product:
+    get:
+      tags:
+        - Produkt
+      summary: Alle Produkte abrufen
+      responses:
+        '200':
+          description: Erfolgreiche Abfrage
+          content:
+            application/json:
+              example:
+                $ref: '#/components/schemas/Product'
+        '201':
+          description: Erfolgreich erstellt
+        '400':
+          description: Ungültige Anfrage
+    post:
+      tags:
+        - Produkt
+      summary: Neues Produkt erstellen
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
+      responses:
+        '201':
+          description: Erfolgreich erstellt
+        '400':
+          description: Ungültige Anfrage
+
+  /product/{productId}:
+    get:
+      tags:
+        - Produkt
+      summary: Produkt mit ID abrufen
+      operationId: getProductById
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: ID des Produkts
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Erfolgreiche Abfrage
+          content:
+            application/json:
+              example:
+                $ref: '#/components/schemas/Product'
+        '400':
+          description: Ungültige Anfrage
+        '404':
+          description: Produkt nicht gefunden
+
+  /cart:
+    post:
+      tags:
+        - Warenkorb
+      summary: Produkt zum Warenkorb hinzufügen
+      requestBody:
+          required: true
+          content:
+            application/json:
+             schema:
+               $ref: '#/components/schemas/CartItem'
+      responses:
+        '201':
+          description: Produkt erfolgreich zum Warenkorb hinzugefügt
+        '400':
+          description: Ungültige Anfrage
+
+    get:
+      tags:
+         - Warenkorb
+      summary: Produkte im Warenkorb anzeigen
+      responses:
+         '200':
+           description: Erfolgreiche Abfrage
+           content:
+             application/json:
+               example:
+                 $ref: '#/components/schemas/Cart'
+         '400':
+           description: Ungültige Anfrage
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 1
+        email:
+          type: string
+          format: email
+          example: test@gmail.com
+        username:
+          type: string
+          example: Max Mustermann
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: 123456
+        password2:
+          type: string
+          format: password
+          minLength: 8
+          example: 123456
+
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 001
+        name:
+          type: string
+          example: Fruit Packet
+        price:
+          type: number
+          example: 43.60
+        weight:
+          type: number
+          example: 500
+
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+          example: Max Mustermann
+        password:
+          type: string
+          format: password
+          minLength: 8
+          example: 123456
+
+    Cart:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                    $ref: '#/components/schemas/CartItem'
+            total:
+              type: number
+              example: 43.60
+
+    CartItem:
+      type: object
+      properties:
+        productId:
+          type: integer
+          format: int64
+          description: Die ID des Produkts im Warenkorb.
+        quantity:
+          type: integer
+          format: int32
+          description: Anzahl der Produkte im Warenkorb
+          minimum: 1
