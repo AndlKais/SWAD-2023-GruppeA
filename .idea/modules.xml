@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/SWAD-2023-GruppeA.iml" filepath="$PROJECT_DIR$/.idea/SWAD-2023-GruppeA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JPA_HUE02/jpa.iml" filepath="$PROJECT_DIR$/JPA_HUE02/jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Swagger_API_HUE01/swagger-spring.iml" filepath="$PROJECT_DIR$/Swagger_API_HUE01/swagger-spring.iml" />
+    </modules>
+  </component>
+</project>

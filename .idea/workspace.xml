@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c65e3ce1-7fe7-4d40-8cf8-943145aaa441" name="Changes" comment=".yaml-File Anpassungen - cart und components erweitert">
-      <change afterPath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistance/AuthorEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistance/BookEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JPA_HUE02/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JPA_HUE02/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistance/AuthorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistence/AuthorEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistance/BookEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JPA_HUE02/src/main/java/at/fhbfi/pit/jpabookauthor/persistence/BookEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Swagger_API_HUE01/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Swagger_API_HUE01/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Swagger_API_HUE01/src/main/java/io/swagger/api/ApiResponseMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Swagger_API_HUE01/src/main/java/io/swagger/api/ApiResponseMessage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +28,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "mattF90"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mattF90&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -61,7 +60,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "Matthias",
+    "git-widget-placeholder": "dev",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

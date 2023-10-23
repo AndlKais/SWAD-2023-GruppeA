@@ -1,4 +1,4 @@
-package at.fhbfi.pit.jpabookauthor.persistance;
+package at.fhbfi.pit.jpabookauthor.persistence;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

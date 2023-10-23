@@ -20,24 +20,24 @@ public class ApiResponseMessage {
     public ApiResponseMessage(int code, String message){
         this.code = code;
         switch(code){
-        case ERROR:
-            setType("error");
-            break;
-        case WARNING:
-            setType("warning");
-            break;
-        case INFO:
-            setType("info");
-            break;
-        case OK:
-            setType("ok");
-            break;
-        case TOO_BUSY:
-            setType("too busy");
-            break;
-        default:
-            setType("unknown");
-            break;
+            case ERROR:
+                setType("error");
+                break;
+            case WARNING:
+                setType("warning");
+                break;
+            case INFO:
+                setType("info");
+                break;
+            case OK:
+                setType("ok");
+                break;
+            case TOO_BUSY:
+                setType("too busy");
+                break;
+            default:
+                setType("unknown");
+                break;
         }
         this.message = message;
     }
