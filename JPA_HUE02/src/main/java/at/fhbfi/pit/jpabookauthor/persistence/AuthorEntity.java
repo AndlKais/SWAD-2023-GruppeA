@@ -20,6 +20,8 @@ public class AuthorEntity {
     private Long id;
     @Column(name = "name")
     private String name;
+    @Column(name = "age")
+    private int age;
     @Column(name = "birthday")
     private Date birthday;
     @Column(name = "dead")
