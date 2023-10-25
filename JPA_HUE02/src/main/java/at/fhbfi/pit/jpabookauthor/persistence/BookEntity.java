@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -23,14 +23,14 @@ public class BookEntity {
     @Column(name = "genre")
     private String genre;
     @Column(name = "releaseDate")
-    private Date releaseDate;
+    private LocalDate releaseDate;
     @Column(name = "pages")
     private int pages;
     @Column(name = "publisher")
     private String publisher;
     @Column(name = "price")
     private double price;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "book_author",
             joinColumns = @JoinColumn(name = "book_id"),

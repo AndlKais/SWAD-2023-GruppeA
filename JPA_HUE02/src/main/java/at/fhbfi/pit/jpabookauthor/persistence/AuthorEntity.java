@@ -1,12 +1,14 @@
 package at.fhbfi.pit.jpabookauthor.persistence;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -23,11 +25,12 @@ public class AuthorEntity {
     @Column(name = "age")
     private int age;
     @Column(name = "birthday")
-    private Date birthday;
+    private LocalDate birthday;
     @Column(name = "dead")
     private boolean dead;
     @Column(name = "writtenBooks")
     private int writtenBooks;
-    @ManyToMany (mappedBy = "authors")
+    @JsonIgnore
+    @ManyToMany (mappedBy = "authors", fetch = FetchType.EAGER)
     private Set<BookEntity> books;
 }

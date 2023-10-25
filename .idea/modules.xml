@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/JPA_HUE02/jpademo.iml" filepath="$PROJECT_DIR$/JPA_HUE02/jpademo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Swagger_API_HUE01/swagger-spring.iml" filepath="$PROJECT_DIR$/Swagger_API_HUE01/swagger-spring.iml" />
+    </modules>
+  </component>
+</project>

@@ -5,24 +5,29 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
 @SpringBootTest
-class JpademoApplicationTests {
+class JpaDemoApplicationTests {
 
     @Autowired
     private AuthorRepository authorRepository;
 
-    /*@Test
+    @Test
+    void contextLoads() {
+    }
+
+    @Test
     void testAuthorPersistence() {
-    List<AuthorEntity> authors = new ArrayList<>();
+        List<AuthorEntity> authors = new ArrayList<>();
+
         authors.add(AuthorEntity.builder()
                 .name("Matt")
                 .age(32)
-                .birthday(new Date(15,9,1989))
+                .birthday(LocalDate.of(1988, 12, 12))
                 .dead(true)
                 .writtenBooks(4)
                 .build());
@@ -30,7 +35,6 @@ class JpademoApplicationTests {
         authorRepository.saveAll(authors);
         authorRepository.findAll().forEach(System.out::println);
 
-    } */
-
+    }
 }
 
