@@ -10,5 +10,6 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity,Long> {
     List<AuthorEntity> findByNameOrAgeAndDead(String name, Integer age, Boolean dead);
     List<AuthorEntity> findByNameAndDead(String name, Boolean dead);
     List<AuthorEntity> findByWrittenBooksOrderByWrittenBooksDesc(int writtenBooks);
+    /*List<AuthorEntity>findByBook(BookEntity bookEntity);*/
 
 }
