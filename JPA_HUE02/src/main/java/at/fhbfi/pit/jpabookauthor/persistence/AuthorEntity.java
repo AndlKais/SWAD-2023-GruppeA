@@ -9,7 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -30,7 +30,7 @@ public class AuthorEntity {
     private boolean dead;
     @Column(name = "writtenBooks")
     private int writtenBooks;
-    @JsonIgnore
-    @ManyToMany (mappedBy = "authors", fetch = FetchType.EAGER)
-    private Set<BookEntity> books;
+    /*@ManyToMany (mappedBy = "authors", fetch = FetchType.EAGER)*/
+    @OneToMany(mappedBy = "authorEntity", fetch = FetchType.EAGER)
+    private List<BookAuthorEntity> bookAuthorEntities;
 }
