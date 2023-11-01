@@ -19,9 +19,6 @@ class JpaDemoApplicationTests {
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    private BookAuthorRepository bookAuthorRepository;
-
     @Test
     void contextLoads() {
     }
@@ -42,6 +39,7 @@ class JpaDemoApplicationTests {
         authorRepository.findAll().forEach(System.out::println);
 
     }
+
     @Test
     void testBookPersistence() {
         List<BookEntity> books = new ArrayList<>();
@@ -63,48 +61,21 @@ class JpaDemoApplicationTests {
     @Test
     void testAuthorBookPersistence() {
 
-        BookEntity mindhunter=(BookEntity.builder()
-                .title("Mindhunter")
-                .genre("Thriller")
-                .releaseDate(LocalDate.of(2004, 9, 30))
-                .pages(460)
-                .publisher("Riva Verlag")
-                .price(24.50)
-                .build());
-        BookEntity fearstreet=(BookEntity.builder()
-                .title("Fearstreet")
-                .genre("Horror")
-                .releaseDate(LocalDate.of(1989, 1, 1))
-                .pages(710)
-                .publisher("Loewe Verlag")
-                .price(22.50)
-                .build());
-        BookEntity todesfrist=(BookEntity.builder()
-                .title("Todesfrist")
-                .genre("Horror")
-                .releaseDate(LocalDate.of(2007, 5, 17))
-                .pages(637)
-                .publisher("Goldmann Verlag")
-                .price(21.90)
-                .build());
-
-        bookRepository.saveAll(List.of(mindhunter,fearstreet,todesfrist));
-
-        AuthorEntity authorMax=(AuthorEntity.builder()
+        AuthorEntity authorMax = (AuthorEntity.builder()
                 .name("Max")
                 .age(24)
                 .birthday(LocalDate.of(1999, 7, 21))
                 .dead(false)
                 .writtenBooks(9)
                 .build());
-        AuthorEntity authorJohn=(AuthorEntity.builder()
+        AuthorEntity authorJohn = (AuthorEntity.builder()
                 .name("John")
                 .age(35)
                 .birthday(LocalDate.of(1988, 9, 13))
                 .dead(true)
                 .writtenBooks(2)
                 .build());
-        AuthorEntity authorLisa=(AuthorEntity.builder()
+        AuthorEntity authorLisa = (AuthorEntity.builder()
                 .name("Lisa")
                 .age(32)
                 .birthday(LocalDate.of(1991, 5, 20))
@@ -113,23 +84,53 @@ class JpaDemoApplicationTests {
                 .build());
 
 
-        BookAuthorEntity bookAuthorEntity1 = (BookAuthorEntity.builder().authorEntity(authorMax).bookEntity(fearstreet).build());
+        authorRepository.saveAll(List.of(authorMax, authorJohn, authorLisa));
 
+        BookEntity mindhunter = (BookEntity.builder()
+                .title("Mindhunter")
+                .genre("Thriller")
+                .releaseDate(LocalDate.of(2004, 9, 30))
+                .pages(460)
+                .publisher("Riva Verlag")
+                .price(24.50)
+                .build());
+        BookEntity fearstreet = (BookEntity.builder()
+                .title("Fearstreet")
+                .genre("Horror")
+                .releaseDate(LocalDate.of(1989, 1, 1))
+                .pages(710)
+                .publisher("Loewe Verlag")
+                .price(22.50)
+                .build());
+        BookEntity todesfrist = (BookEntity.builder()
+                .title("Todesfrist")
+                .genre("Horror")
+                .releaseDate(LocalDate.of(2007, 5, 17))
+                .pages(637)
+                .publisher("Goldmann Verlag")
+                .price(21.90)
+                .build());
 
-        authorRepository.saveAll(List.of(authorMax,authorJohn,authorLisa));
+        bookRepository.saveAll(List.of(mindhunter, fearstreet, todesfrist));
+
         AuthorEntity max = authorRepository.findByName("Max").get(0);
-        //AuthorEntity john = authorRepository.findByName("John").get(1);
+        AuthorEntity john = authorRepository.findByName("John").get(0);
 
-        
-        fearstreet.getBookAuthorEntities();
+        ArrayList<AuthorEntity> authors = new ArrayList<>();
+        authors.add(max);
+        authors.add(john);
+
+        fearstreet.setAuthors(authors);
         bookRepository.save(fearstreet);
 
         bookRepository.findAll().forEach(System.out::println);
 
-        System.out.println("Fearstreet wurde geschrieben von: " + fearstreet);
-        bookAuthorRepository.findByBookEntity(fearstreet).forEach(System.out::println);
+        //System.out.println(bookRepository.findAll().get(1));
 
-
-        }
+        System.out.println("Fearstreet wurde geschrieben von: ");
+        //authorRepository.findByBooksIn(List.of(fearstreet)).forEach(System.out::println);
+        bookRepository.findByTitle("Fearstreet").forEach(c -> c.getAuthors().forEach(System.out::println));
+        //Assertions.assertEquals(2, bookRepository.findAllWithBooks().get(0).getAuthors().size());
     }
+}
 

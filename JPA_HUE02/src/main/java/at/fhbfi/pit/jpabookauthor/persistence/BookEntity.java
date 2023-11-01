@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,12 +31,6 @@ public class BookEntity {
     private String publisher;
     @Column(name = "price")
     private double price;
-    /*@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "book_author",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))*/
-    @OneToMany(mappedBy = "bookEntity", fetch = FetchType.EAGER)
-    private List<BookAuthorEntity> bookAuthorEntities;
-
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    private List<AuthorEntity> authors = new ArrayList<>();
 }
