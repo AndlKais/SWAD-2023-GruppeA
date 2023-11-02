@@ -1,6 +1,8 @@
 package at.fhbfi.pit.jpabookauthor;
 
 import at.fhbfi.pit.jpabookauthor.persistence.*;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @SpringBootTest
 class JpaDemoApplicationTests {
@@ -59,6 +60,7 @@ class JpaDemoApplicationTests {
     }
 
     @Test
+    @Transactional
     void testAuthorBookPersistence() {
 
         AuthorEntity authorMax = (AuthorEntity.builder()
@@ -83,10 +85,9 @@ class JpaDemoApplicationTests {
                 .writtenBooks(3)
                 .build());
 
-
         authorRepository.saveAll(List.of(authorMax, authorJohn, authorLisa));
 
-        BookEntity mindhunter = (BookEntity.builder()
+        BookEntity bookMindhunter = (BookEntity.builder()
                 .title("Mindhunter")
                 .genre("Thriller")
                 .releaseDate(LocalDate.of(2004, 9, 30))
@@ -94,7 +95,7 @@ class JpaDemoApplicationTests {
                 .publisher("Riva Verlag")
                 .price(24.50)
                 .build());
-        BookEntity fearstreet = (BookEntity.builder()
+        BookEntity bookFearstreet = (BookEntity.builder()
                 .title("Fearstreet")
                 .genre("Horror")
                 .releaseDate(LocalDate.of(1989, 1, 1))
@@ -102,7 +103,7 @@ class JpaDemoApplicationTests {
                 .publisher("Loewe Verlag")
                 .price(22.50)
                 .build());
-        BookEntity todesfrist = (BookEntity.builder()
+        BookEntity bookTodesfrist = (BookEntity.builder()
                 .title("Todesfrist")
                 .genre("Horror")
                 .releaseDate(LocalDate.of(2007, 5, 17))
@@ -111,7 +112,7 @@ class JpaDemoApplicationTests {
                 .price(21.90)
                 .build());
 
-        bookRepository.saveAll(List.of(mindhunter, fearstreet, todesfrist));
+        bookRepository.saveAll(List.of(bookMindhunter, bookFearstreet, bookTodesfrist));
 
         AuthorEntity max = authorRepository.findByName("Max").get(0);
         AuthorEntity john = authorRepository.findByName("John").get(0);
@@ -120,17 +121,26 @@ class JpaDemoApplicationTests {
         authors.add(max);
         authors.add(john);
 
-        fearstreet.setAuthors(authors);
-        bookRepository.save(fearstreet);
+        bookFearstreet.setAuthors(authors);
+        bookRepository.save(bookFearstreet);
 
+        System.out.println("Alle Bücher: ");
         bookRepository.findAll().forEach(System.out::println);
-
-        //System.out.println(bookRepository.findAll().get(1));
+        System.out.println();
+        System.out.println("Alle Autoren: ");
+        authorRepository.findAll().forEach(System.out::println);
+        System.out.println();
 
         System.out.println("Fearstreet wurde geschrieben von: ");
-        //authorRepository.findByBooksIn(List.of(fearstreet)).forEach(System.out::println);
+        System.out.println();
+
         bookRepository.findByTitle("Fearstreet").forEach(c -> c.getAuthors().forEach(System.out::println));
-        //Assertions.assertEquals(2, bookRepository.findAllWithBooks().get(0).getAuthors().size());
+        Assertions.assertEquals(2, bookRepository.findAllWithBooks().get(3).getAuthors().size());
+
+        System.out.println();
+
+        System.out.println("Welches Buch kann ich mir um 22,50 kaufen?");
+        bookRepository.findByPriceOrderByPriceDesc(22.50).forEach(System.out::println);
     }
 }
 

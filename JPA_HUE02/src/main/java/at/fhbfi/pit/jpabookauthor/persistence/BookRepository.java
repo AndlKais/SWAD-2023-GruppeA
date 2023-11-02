@@ -10,7 +10,6 @@ public interface BookRepository extends JpaRepository<BookEntity,Long> {
 
     List<BookEntity> findByTitle (String name);
     List<BookEntity> findByTitleOrderByTitle (String name);
-    //List<BookEntity> findByAuthors(List<AuthorEntity> name);
     List<BookEntity> findByReleaseDateOrderByReleaseDateAsc(LocalDate releaseDate);
     List<BookEntity> findByPriceOrderByPriceDesc(double price);
 

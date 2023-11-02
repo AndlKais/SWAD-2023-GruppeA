@@ -33,7 +33,7 @@ public class AuthorEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "book_author",
+            name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id"))
     private List<BookEntity> books = new ArrayList<>();
