@@ -4,6 +4,8 @@ import at.fhbfi.pit.jpabookauthor.persistence.AuthorEntity;
 import at.fhbfi.pit.jpabookauthor.service.dto.AuthorDto;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class AuthorMapper implements Mapper<AuthorDto, AuthorEntity>{
 

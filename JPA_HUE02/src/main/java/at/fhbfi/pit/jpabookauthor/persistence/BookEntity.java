@@ -31,6 +31,6 @@ public class BookEntity {
     private String publisher;
     @Column(name = "price")
     private double price;
-    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "books", fetch = FetchType.LAZY)
     private List<AuthorEntity> authors = new ArrayList<>();
 }

@@ -31,7 +31,7 @@ public class AuthorEntity {
     @Column(name = "writtenBooks")
     private int writtenBooks;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "author_book",
             joinColumns = @JoinColumn(name = "author_id"),
