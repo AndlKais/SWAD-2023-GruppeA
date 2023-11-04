@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootTest
+@Transactional
 class JpaDemoApplicationTests {
 
     @Autowired
@@ -60,7 +61,6 @@ class JpaDemoApplicationTests {
     }
 
     @Test
-    @Transactional
     void testAuthorBookPersistence() {
 
         AuthorEntity authorMax = (AuthorEntity.builder()
